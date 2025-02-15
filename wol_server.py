@@ -1,7 +1,7 @@
 from flask import Flask
 
 import wol
-from constant_address import PC_MAC
+from constant_address import PC_MAC, PORT
 
 
 app = Flask(__name__)
@@ -17,4 +17,4 @@ def wake():
     return "Wake-on-LAN packet sent!"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=1950)
+    app.run(host="0.0.0.0", port=PORT)
