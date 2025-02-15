@@ -7,6 +7,10 @@ from constant_address import PC_MAC
 app = Flask(__name__)
 
 
+@app.route("/")
+def home():
+    return "Go to <a href='/wake'>/wake</a> to WOL your device."
+
 @app.route("/wake")
 def wake():
     wol.wol(PC_MAC)  # Change this to your desktop’s Ethernet MAC
