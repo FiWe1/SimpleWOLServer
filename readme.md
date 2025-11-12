@@ -1,3 +1,5 @@
+# Simple WOL Server
+
 A simple python / flask web app to Wake On Lan your PC
 in its local network.
 
@@ -7,6 +9,8 @@ f.e. via VPN (Tailscale).
 
 config.py:
 Edit pc_mac address and LAN broadcast IP address, optionally app port.
+- to ignore local changes in config.py (changing ports), run:
+    git update-index --assume-unchanged config.py
 
 
 Install required packages:
