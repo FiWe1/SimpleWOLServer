@@ -5,9 +5,21 @@ Deploy on your always on device connected physically to the PC
 (ethernet, LAN), and make the server accesible on internet,
 f.e. via VPN (Tailscale).
 
-address.py:
-Edit pc_mac address and LAN broadcast IP address.
+config.py:
+Edit pc_mac address and LAN broadcast IP address, optionally app port.
 
 
-Run wol_server.py. Now, you can wake your PC on URL:
+Install required packages:
+1. create and activate virtual environment:
+python -m venv .venv
+source .venv/bin/activate
+
+2. install:
+pip install -r requirements.txt
+
+
+To run the app, run:
+python wol_server.py
+
+Now, you can wake your PC on URL:
 http://your_ip:1950/wake

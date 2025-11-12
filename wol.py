@@ -1,6 +1,6 @@
 import socket
 
-from constant_address import PC_MAC, LAN_BROADCAST
+from config import PC_MAC, LAN_BROADCAST
 
 
 def wol(luna_mac_address: bytes) -> None:

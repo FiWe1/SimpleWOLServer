@@ -1,7 +1,7 @@
 from flask import Flask
 
 import wol
-from constant_address import PC_MAC, PORT
+from config import PC_MAC, PORT
 
 
 app = Flask(__name__)
