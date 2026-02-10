@@ -4,6 +4,7 @@ import wol
 from config import PC_MAC, PORT
 
 
+PC_MAC_BIN = bytes.fromhex(PC_MAC.replace(":", ""))
 app = Flask(__name__)
 
 
@@ -15,8 +16,9 @@ def home():
 @app.route("/wake")
 def wake():
     try:
-        wol.wol(PC_MAC, times=3)  # Edit your desktop’s Ethernet MAC in config.py
-    except Exception:
+        wol.wol(PC_MAC_BIN, times=3)  # Edit your desktop’s Ethernet MAC in config.py
+    except Exception as e:
+        print(e)
         return redirect(url_for("failure"))
     
     return redirect(url_for("success"))
@@ -29,7 +31,10 @@ def success():
 
 @app.route("/failure")
 def failure():
-    return "Failed to send WOL packet. Try again: \n" + "<a href='/wake'>Click</a> to resend."
+    return (
+        "Failed to send WOL packet. Check logs or try again: \n"
+        + "<a href='/wake'>Click</a> to resend."
+    )
 
 
 if __name__ == "__main__":
