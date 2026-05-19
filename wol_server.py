@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template
 
 import wol
-from config import PC_MAC, PORT
+from config import PC_MAC, PC_NAME, PORT
 
 
 PC_MAC_BIN = bytes.fromhex(PC_MAC.replace(":", ""))
@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("wake.html")
+    return render_template("wake.html", pc_name=PC_NAME)
 
 
 @app.route("/wake")
@@ -21,17 +21,17 @@ def wake():
         print(e)
         return redirect(url_for("failure"))
 
-    return redirect(url_for("success"))
+    return redirect(url_for("success", pc_name=PC_NAME))
 
 
 @app.route("/success")
 def success():
-    return render_template("success.html")
+    return render_template("success.html", pc_name=PC_NAME)
 
 
 @app.route("/failure")
 def failure():
-    return render_template("failure.html")
+    return render_template("failure.html", pc_name=PC_NAME)
 
 
 if __name__ == "__main__":

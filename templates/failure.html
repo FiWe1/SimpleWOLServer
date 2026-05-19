@@ -4,6 +4,6 @@
 
 {% block content %}
 <h1>Failed</h1>
-<p>Could not send WOL packet. Check logs or try again.</p>
+<p>Could not send WOL packet to {{ pc_name }}. Check logs or try again.</p>
 <a href="/wake" class="btn">Retry</a>
 {% endblock %}
