@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 
 import wol
 from config import PC_MAC, PORT
@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Go to <a href='/wake'>/wake</a> to WOL your device."
+    return render_template("wake.html")
 
 
 @app.route("/wake")
@@ -20,21 +20,18 @@ def wake():
     except Exception as e:
         print(e)
         return redirect(url_for("failure"))
-    
+
     return redirect(url_for("success"))
 
 
 @app.route("/success")
 def success():
-    return "Wake-on-LAN packet sent!\n" + "<a href='/wake'>Click</a> to resend."
+    return render_template("success.html")
 
 
 @app.route("/failure")
 def failure():
-    return (
-        "Failed to send WOL packet. Check logs or try again: \n"
-        + "<a href='/wake'>Click</a> to resend."
-    )
+    return render_template("failure.html")
 
 
 if __name__ == "__main__":
